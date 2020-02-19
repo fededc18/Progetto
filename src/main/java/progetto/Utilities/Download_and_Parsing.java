@@ -1,6 +1,7 @@
 package progetto.Utilities;
 
 import progetto.Model.*;
+
 import java.io.BufferedReader; 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,7 +24,7 @@ public class Download_and_Parsing {
 	
 	public Download_and_Parsing()
 	{
-		this.productionlist = new ArrayList<Produz_Agricola>; 
+		this.productionlist = new ArrayList<Produz_Agricola> ; 
 	}
 	
 	/**
@@ -85,11 +86,60 @@ public class Download_and_Parsing {
 		return link;
 	}
 	
-	/*
+	/**
 	 * Metodo per effetuare il parsing
 	 * 
-	 * @param link stringa che contiene l'url del dataset
-	 * 
+	 * @param link stringa che contiene l'url del dataset 
+	 * @return lista oggetti di Produzione Agricola
 	 */
-
+	
+	public List<Produz_Agricola> parsing(String link) 
+	{
+		InputStream in = null;
+		try {
+            URLConnection openConnection = new URL(link).openConnection();
+            openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
+            in = openConnection.getInputStream();
+            
+            String line;
+            BufferedReader buf = new BufferedReader(new InputStreamReader(in));
+            
+            while ((line = buf.readLine()) != null) 
+            {
+            	String[] fields = line.split("[,\t]");//si usa il metodo split per dividere la stringa, i caratteri separatori che si passano sono la virgola e il tab
+                if (fields.length != 11){
+                	System.out.println("Il record e' errato");
+                	continue;
+                }
+                /*
+                 * non so come scrivere questa parte, dove si organizza la lettura dei dati ???
+                 */
+                else {
+                	
+                	
+                }
+                
+            }
+		}
+            	
+        catch (FileNotFoundException e) {
+    	   		e.printStackTrace();
+    	  } 
+        catch (IOException e) {
+        	e.printStackTrace();
+    	   	} 
+        finally 
+         {
+           try {
+               if (in != null) in.close();
+               }         	 
+    	    catch (IOException e) {
+    	       e.printStackTrace();
+    	   	   }
+    	 }
+		
+    	System.out.println("Parsing completato.\n");  
+        return productionlist;        	
+	}
+	
 }

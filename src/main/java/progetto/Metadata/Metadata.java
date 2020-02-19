@@ -9,66 +9,31 @@ import progetto.Model.*;
 
 public class Metadata {
 	
-	private List<Map> metadata = new ArrayList<>();
+	private ArrayList<Map> metadata = new ArrayList<>();
+	/*
+	 * Costruttore della classe
+	 */
 	public Metadata() {
 	Field[] fields = Produz_Agricola.class.getDeclaredFields(); // estrae gli attributi dalla classe Produz_Agricola
-	
-	
-	}
-
-}
-
-/*
-
-//metadata di Anna(cercare di comprendere se le parti diverse da quelllo di corrado interessano il mio progetto
-
-public ArrayList<Map> metadata() {
-    Field[] fields = DayCareChildren.class.getDeclaredFields(); //estrae gli attributi da DayCareChildren
-    ArrayList<Map> metaDati = new ArrayList<>();
-    //line = line.replace(",", "\t");
-    String[] dividedLine = headerLine.trim().replace("\\", "\t").split("[,\t]"); //divide la stringa sulla prima linea
     for (int i = 0; i < fields.length; i++) {
-        Map<String, String> nameAssociation = new HashMap<>(); //creiamo una mappa con le coppie chiave-valore
-        nameAssociation.put("alias", fields[i].getName());
-        //inseriamo le coppie
-        nameAssociation.put("sourcefield", dividedLine[i]);
-        nameAssociation.put("type", fields[i].getType().getSimpleName());
-        metaDati.add(nameAssociation);//salva i metadati in metaDati
-    }
-    return metaDati;
-}
-}
-
-
-//metadata di Corrado
-
-
-
-public Metadata() {
-	
-	Field[] fields = Erasmus.class.getDeclaredFields();//estrae gli attributi della classe Erasmus
-
-    for (Field f : fields) {
-        Map<String, String> map = new HashMap<>();
-        //andiamo ad inserire le coppie chiave/valore
-        map.put("alias", f.getName());
-        map.put("sourceField", f.getName().toUpperCase());//nome del campo in csv
-        map.put("type", f.getType().getSimpleName());
+    	Map<String, String> map = new HashMap<>(); //creiamo una mappa con le coppie chiave-valore
+    	//andiamo ad inserire le coppie
+    	map.put("alias", fields[i].getName());
+        map.put("sourceField", fields[i].getName().toUpperCase());//Non mi convinve questa parte
+        map.put("type", fields[i].getType().getSimpleName());
         metadata.add(map);
     	}
-
-    }
-    
-/**
- * Metodo che ritorna la lista di mappe contenente i metadati
- * 
- * @return lista dei metadati
- */
-/*
-public List<Map> getMetadata() {
-	return metadata;
+	 
+	}
+	
+	/*
+	 * Metodo che restituisce i metadati 
+	 * @return la lista dei metadati
+	*/
+	
+	public ArrayList<Map> getMetadata() 
+	{
+		return metadata;
 	}
 
 }
-
-*/
