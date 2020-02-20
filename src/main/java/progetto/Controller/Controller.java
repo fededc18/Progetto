@@ -1,8 +1,10 @@
 package progetto.Controller;
 
+import progetto.Service.*;
 import java.util.List;
 import java.util.Map;
 
+import com.digarcisi.progettoesame.controller.RequestParam;
 import com.lindatato.Progetto.Controller.Autowired;
 import com.lindatato.Progetto.Controller.GetMapping;
 
@@ -35,19 +37,48 @@ public class Controller {
 	 */
 	
 	@GetMapping("/dataset")
-    public List getAllDataset() {
+    public List getDataset() {
         return service.getDataset();
     }
 	
-	/**
-     * Metodo che gestisce la richiesta GET alla rotta "/metadata"
-     *
-     * @return i metadati
-     */
+	/*
+	 * Metodo che gestisce la richiesta GET alla rotta "/metadata"
+	 * 
+	 * @return lista di metadati
+	 */
 	@GetMapping("/metadata")
-    public List<Map> getMetadata() {
+    public List getMetadata() {
         return service.getMetadata();
     }
 	
+	/*
+	 * Metodo che gestisce la richiesta GET alla rotta "/statistics"
+	 * 
+	 * @param campo nome del campo di cui vogliamo calcolare le statistiche
+	 * @return lista di oggetti del dataset
+	 */
+	
+	@GetMapping("/statistics")
+	public List<Map> getStatistics(@RequestParam (value="nome campo" , Default="") String campo){
+		return service.getStatistics(campo);
+	}
+	
+	/*
+	 * Metodo che gestisce la richiesta DELETE alla rotta "/delete"
+	 * 
+	 * @param campo nome del campo
+	 * @param body contiene i criteri
+	 * @return lista degli elementi eliminati
+	 */
+	
+	@DeleteMapping("/delete")
+	
+	
+	/*
+	 * Metodo che gestisce la richiesta POST alla rotta "/dataset"
+	 * 
+	 * @param 
+	 * @return lista di oggetti del dataset
+	 */
 
 }
