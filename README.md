@@ -1,4 +1,4 @@
-# *PROGETTO
+# PROGETTO
 Progetto di Febbraio
 
 ## Introduzione
