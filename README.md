@@ -16,7 +16,7 @@ Per testare il software è possibile utilizzare **Postman**, ambiente attraverso
 
 Le classi sono inserite in cinque package principali basati sulla logica MVC (Model View Controller):
 
-_Controller_ racchiude tutti i metodi necessari per far fronte alle richieste GET e POST.
+_Controller_ racchiude tutti i metodi necessari per far fronte alle richieste GET.
 
 _Services_ è utile nell’implementazione di metodi che gestiscono l’accesso a dati, metadati, statistiche.
 
@@ -40,16 +40,9 @@ localhost:8080/dataset
 ```
 localhost:8080/metadata
 ```
--  **/statistics?nomecampo="campo"**(in cui "campo" può essere unit , crops, agprdmet, geo o, per ottenere statistiche di tipo numerico, un anno compreso tra il 2012 e il 2018 inclusi) per la restituzione delle statistiche su un determinato campo del dataset.
+-  **/statistics?campo="campo"**(in cui "campo" può essere unit , crops, agprdmet, geo o, per ottenere statistiche di tipo numerico, un anno compreso tra il 2012 e il 2018 inclusi) per la restituzione delle statistiche su un determinato campo del dataset.
 ```
 localhost:8080/statistics
 ```
 
--   **/delete** : attraverso questa richiesta è possibile eliminare una serie di dati filtrati. Nel body sarà possibile inserire il criterio secondo la struttura
-
-> {"campo" : {"operatore" : "riferimento"} }
-
-
-## Delete a file
-
-You can delete the current 
+-   **/delete** : attraverso questa richiesta è possibile eliminare un dato specifico attraverso un numero identificativo da noi assegnato.
