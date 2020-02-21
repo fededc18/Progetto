@@ -46,3 +46,6 @@ localhost:8080/statistics
 ```
 
 -   **/delete** : attraverso questa richiesta è possibile eliminare un dato specifico attraverso un numero identificativo da noi assegnato.
+```
+localhost:8080/delete
+```
