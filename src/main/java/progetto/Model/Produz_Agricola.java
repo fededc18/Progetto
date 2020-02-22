@@ -1,6 +1,5 @@
 package progetto.Model;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
 /*
@@ -8,16 +7,18 @@ import java.util.Arrays;
  */
 
 
-public class Produz_Agricola implements Serializable {
+public class Produz_Agricola {
+	private int id;
 	private String unit;
 	private String crops;
 	private String agprdmet;
 	private String geo;
 	private double[] time = new double [7] ;
 	
-	/*
+	/**
 	 * Costruttore della classe
 	 * 
+	 * @param id
 	 * @param unit
 	 * @param crops
 	 * @param agprdmet
@@ -25,17 +26,27 @@ public class Produz_Agricola implements Serializable {
 	 * @param time
 	 */
 	
-	public Produz_Agricola(String unit, String crops, String agprdmet, String geo, double[] time  ) {
+	public Produz_Agricola(int id, String unit, String crops, String agprdmet, String geo, double[] time) {
+		this.id=id;
 		this.unit = unit;
 		this.crops = crops;
 		this.agprdmet= agprdmet;
 		this.geo = geo;
 		this.time = time;
+		
 	
 	}
 	
-	//Metodi Getter e Setter
+	// Metodi Getter e Setter
+	
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String getUnit() {
 		return unit;
 	}
@@ -67,23 +78,30 @@ public class Produz_Agricola implements Serializable {
 	public void setGeo(String geo) {
 		this.geo = geo;
 	}
+	
+	public double getTime(int year) {
+		return time[year];
+	}
 
 	public double[] getTime() {
 		return time;
 	}
 
-	public void setTime(double[] time) {
-		this.time = time;
+	public void setTime(double time, int year) {
+		this.time[year] = time;
 	}
+
+	
 	
 	/**
      * metodo che consente la stampa
      *
      * @return una stringa in cui vengono indicati i vari campi e il loro valore
      */
+	
     @Override
     public String toString() {
-        return "Produz_Agricola{" +
+        return "Produz_Agricola{"+"id=" + id +
                 "unit= " + unit + ' ' +
                 ", crops= " + crops + ' ' +
                 ", agprdmet= " + agprdmet + ' ' + 
@@ -92,5 +110,6 @@ public class Produz_Agricola implements Serializable {
                 '}';
     }
 
+	
 	
 }
