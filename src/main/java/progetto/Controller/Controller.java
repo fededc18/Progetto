@@ -1,12 +1,18 @@
 package progetto.Controller;
 
-import progetto.Service.*;
 import java.util.List;
 import java.util.Map;
 
-import com.digarcisi.progettoesame.controller.RequestParam;
-import com.lindatato.Progetto.Controller.Autowired;
-import com.lindatato.Progetto.Controller.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import progetto.Service.Service;
+
 
 /*
  * Gestisce le richieste dell'utente
@@ -28,7 +34,7 @@ public class Controller {
 		this.service= service;
 	}
 	
-	//Metodi per la comunicazione con il client che gestiscono le richieste GET e POST
+	//Metodi per la comunicazione con il client che gestiscono le richieste GET
 	
 	/*
 	 * Metodo che gestisce la richiesta GET alla rotta "/dataset"
@@ -59,26 +65,24 @@ public class Controller {
 	 */
 	
 	@GetMapping("/statistics")
-	public List<Map> getStatistics(@RequestParam (value="nome campo" , Default="") String campo){
+	public Map getStatistics(@RequestParam (value="campo" , defaultValue="") String campo){
 		return service.getStatistics(campo);
 	}
 	
 	/*
 	 * Metodo che gestisce la richiesta DELETE alla rotta "/delete"
 	 * 
-	 * @param campo nome del campo
-	 * @param body contiene i criteri
-	 * @return lista degli elementi eliminati
+	 * @param id identificatore di un determinato elemento
+	 * @return elemento eliminato
 	 */
 	
 	@DeleteMapping("/delete")
-	
-	
-	/*
-	 * Metodo che gestisce la richiesta POST alla rotta "/dataset"
-	 * 
-	 * @param 
-	 * @return lista di oggetti del dataset
-	 */
+	public ResponseEntity<String> deleteRecord(@RequestParam (value="id" , defaultValue="") Integer id){
+		if(id >= 0)
+			return service.deleteRecord(id);
+		else
+			return new ResponseEntity<String>("invalid id", HttpStatus.BAD_REQUEST);
+		
+	}
 
 }
