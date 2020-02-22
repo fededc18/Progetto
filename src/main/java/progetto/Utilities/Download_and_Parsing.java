@@ -20,11 +20,11 @@ import org.json.simple.parser.ParseException;
 public class Download_and_Parsing {
 	
 	private String link ="";
-	private List<Produz_Agricola> productionlist;
+	private ArrayList<Produz_Agricola> productionlist;
 	
 	public Download_and_Parsing()
 	{
-		this.productionlist = new ArrayList<Produz_Agricola> ; 
+		this.productionlist = new ArrayList<Produz_Agricola>() ; 
 	}
 	
 	/**
@@ -93,9 +93,10 @@ public class Download_and_Parsing {
 	 * @return lista oggetti di Produzione Agricola
 	 */
 	
-	public List<Produz_Agricola> parsing(String link) 
+	public ArrayList<Produz_Agricola> parsing(String link) 
 	{
 		InputStream in = null;
+		int count = 0;
 		try {
             URLConnection openConnection = new URL(link).openConnection();
             openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
@@ -111,12 +112,24 @@ public class Download_and_Parsing {
                 	System.out.println("Il record e' errato");
                 	continue;
                 }
-                /*
-                 * non so come scrivere questa parte, dove si organizza la lettura dei dati ???
-                 */
+                
                 else {
                 	
+                	double[] time = new double [7] ;
                 	
+                	Produz_Agricola lista = new Produz_Agricola(count, fields[0], fields[1], fields[2], fields[3], time);
+                	
+                	for(int i=0; i < 7 ; i++ ) {
+                		try {
+                            double valore = Double.parseDouble(fields[8 - i]);
+                            lista.setTime(valore, i);
+                        } 
+                		catch (NumberFormatException e) {
+                        	System.out.println(e);
+                        }
+                	}
+                	count++;// per id
+                	productionlist.add(lista);
                 }
                 
             }
