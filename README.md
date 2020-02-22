@@ -41,9 +41,6 @@ localhost:8080/dataset
 localhost:8080/metadata
 ```
 -  **/statistics?campo="campo"**(in cui "campo" può essere unit , crops, agprdmet, geo o, per ottenere statistiche di tipo numerico, un anno compreso tra il 2012 e il 2018 inclusi) per la restituzione delle statistiche su un determinato campo del dataset.
-```
-localhost:8080/statistics
-```
 
 -   **/delete** : attraverso questa richiesta è possibile eliminare un dato specifico attraverso un numero identificativo da noi assegnato.
 ```
